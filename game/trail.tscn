@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0.00662252, 1 )
+colors = PoolColorArray( 1, 1, 1, 0.678431, 1, 1, 1, 0 )
+
+[node name="trail" type="Line2D"]
+material = SubResource( 1 )
+position = Vector2( -11.6984, -103.716 )
+points = PoolVector2Array( -74.7168, 95.1164, 13.6472, -327.202, -1.21394, -337.554, -25.8115, -350.775, -59.6333, -335.401, -80.8951, -313.075, -90.3804, -278.007, -66.2899, -136.119 )
+width = 100.0
+default_color = Color( 1, 1, 1, 1 )
+gradient = SubResource( 2 )
+texture_mode = 2
+joint_mode = 1

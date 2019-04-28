@@ -1,0 +1,112 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://head.gd" type="Script" id=1]
+[ext_resource path="res://textures/shine.png" type="Texture" id=2]
+[ext_resource path="res://textures/orbit.png" type="Texture" id=3]
+[ext_resource path="res://circle.gd" type="Script" id=4]
+[ext_resource path="res://textures/mind.png" type="Texture" id=5]
+[ext_resource path="res://textures/body.png" type="Texture" id=6]
+[ext_resource path="res://textures/head.png" type="Texture" id=7]
+[ext_resource path="res://textures/face.png" type="Texture" id=8]
+
+[sub_resource type="PhysicsMaterial" id=4]
+absorbent = true
+
+[sub_resource type="CircleShape2D" id=6]
+radius = 235.836
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 151.595
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 46.7054
+
+[sub_resource type="CircleShape2D" id=7]
+
+[node name="budha" type="RigidBody2D"]
+collision_layer = 512
+collision_mask = 0
+physics_material_override = SubResource( 4 )
+gravity_scale = 0.0
+contacts_reported = 10
+contact_monitor = true
+linear_damp = 1.0
+angular_damp = 128.0
+script = ExtResource( 1 )
+force_value = 1200
+
+[node name="orbit" type="Area2D" parent="."]
+priority = 1.0
+collision_layer = 256
+collision_mask = 256
+
+[node name="shine_sprt" type="Sprite" parent="orbit"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="orbit_sprt" type="Sprite" parent="orbit"]
+texture = ExtResource( 3 )
+
+[node name="shape" type="CollisionShape2D" parent="orbit"]
+shape = SubResource( 6 )
+
+[node name="mind" type="RigidBody2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+gravity_scale = 0.0
+linear_damp = 2.0
+script = ExtResource( 4 )
+force_value = 1500
+stick = "left"
+
+[node name="shine_sprt" type="Sprite" parent="mind"]
+texture = ExtResource( 5 )
+
+[node name="shape" type="CollisionShape2D" parent="mind"]
+shape = SubResource( 1 )
+
+[node name="body" type="RigidBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 0, 140.313 )
+collision_layer = 0
+collision_mask = 0
+mass = 0.1
+
+[node name="body_sprt" type="Sprite" parent="body"]
+position = Vector2( 0, 40 )
+texture = ExtResource( 6 )
+
+[node name="joint" type="PinJoint2D" parent="body"]
+node_a = NodePath("../..")
+node_b = NodePath("..")
+softness = 10.0
+
+[node name="shape" type="CollisionShape2D" parent="body"]
+position = Vector2( 0, 40 )
+shape = SubResource( 5 )
+
+[node name="shine_sprt" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="head_sprt" type="Sprite" parent="."]
+texture = ExtResource( 7 )
+
+[node name="face_sprt" type="Sprite" parent="."]
+position = Vector2( 0, 45 )
+z_index = 10
+texture = ExtResource( 8 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="mind_joint" type="DampedSpringJoint2D" parent="."]
+node_a = NodePath("..")
+node_b = NodePath("../mind")
+length = 5.0
+stiffness = 7.0
+damping = 0.1
+
+[node name="center" type="KinematicBody2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="center"]
+shape = SubResource( 7 )
