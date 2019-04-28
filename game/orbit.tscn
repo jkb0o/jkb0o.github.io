@@ -1,14 +1,17 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://textures/shine.png" type="Texture" id=1]
 [ext_resource path="res://textures/orbit.png" type="Texture" id=2]
 
-[sub_resource type="CircleShape2D" id=2]
-radius = 256.0
+[sub_resource type="CircleShape2D" id=1]
+radius = 291.407
 
-[node name="orbit" type="KinematicBody2D"]
-collision_layer = 524288
-collision_mask = 524288
+[sub_resource type="CircleShape2D" id=2]
+
+[node name="orbit" type="Area2D"]
+priority = 1.0
+collision_layer = 256
+collision_mask = 256
 
 [node name="shine_sprt" type="Sprite" parent="."]
 scale = Vector2( 2, 2 )
@@ -18,4 +21,9 @@ texture = ExtResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="center" type="KinematicBody2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="center"]
 shape = SubResource( 2 )

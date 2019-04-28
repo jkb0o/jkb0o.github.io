@@ -1,8 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://projectile.gd" type="Script" id=1]
 [ext_resource path="res://textures/thought_spikes.png" type="Texture" id=2]
-[ext_resource path="res://textures/thought_body.png" type="Texture" id=3]
+[ext_resource path="res://textures/thought_spikes_white.png" type="Texture" id=3]
+[ext_resource path="res://textures/thought_body.png" type="Texture" id=4]
+[ext_resource path="res://textures/thought_body_white.png" type="Texture" id=5]
+[ext_resource path="res://textures/heart.png" type="Texture" id=6]
 
 [sub_resource type="PhysicsMaterial" id=2]
 bounce = 10.0
@@ -10,21 +13,42 @@ bounce = 10.0
 [sub_resource type="CircleShape2D" id=1]
 radius = 51.6532
 
+[sub_resource type="StreamTexture" id=3]
+flags = 4
+load_path = "res://.import/flash.png-5d123b8de9655f671b0782a18040f3c5.stex"
+
 [node name="projectile" type="RigidBody2D"]
 position = Vector2( 486.411, 492.657 )
 collision_layer = 0
-collision_mask = 768
+collision_mask = 896
 physics_material_override = SubResource( 2 )
 angular_damp = 0.05
 applied_force = Vector2( 50, 0 )
 script = ExtResource( 1 )
 
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
 [node name="spikes" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 
-[node name="face" type="Sprite" parent="."]
-modulate = Color( 0.831373, 0.176471, 0.176471, 1 )
+[node name="spikes_white" type="Sprite" parent="."]
+visible = false
 texture = ExtResource( 3 )
 
-[node name="shape" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[node name="face" type="Sprite" parent="."]
+modulate = Color( 0.831373, 0.176471, 0.176471, 1 )
+texture = ExtResource( 4 )
+
+[node name="face_white" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 5 )
+
+[node name="heart" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 6 )
+
+[node name="flash" type="Sprite" parent="."]
+visible = false
+texture = SubResource( 3 )

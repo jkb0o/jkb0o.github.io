@@ -6,8 +6,9 @@ export var breaking_gap = 50
 export var joining_gap = 50
 
 onready var mind = $mind
-#onready var orbit = $mind/orbit
-onready var orbit = $orbit
+onready var orbit = $mind/orbit
+onready var center = $mind/orbit/center
+#onready var orbit = $orbit
 onready var mind_joint = $joint
 
 
@@ -39,25 +40,22 @@ func add_to_orbit(projectile:Projectile):
 	#return
 #	var j = DampedSpringJoint2D.new()
 	j.disable_collision = true
-	$center.add_child(j)
+	center.add_child(j)
 	#j.position.y = - 20
 	j.softness = 20
 	
-	j.node_a = j.get_path_to($center)
+	j.node_a = j.get_path_to(center)
 	j.node_b = j.get_path_to(projectile)
 	#j.rest_length = global_position.distance_to(projectile.global_position)
 	#j.length = j.rest_length
 	#j.initial_offset = 0
 #	j.stiffness = 20
+	projectile.joint = j
 	projectile.applied_force = Vector2()
 	projectile.collision_mask = 0
 	projectile.collision_layer = 0
 	projectile.set_orbit(orbit)
-	get_tree().create_timer(2).connect("timeout", self, "add_lifes", [projectile, j])
-	
-func add_lifes(projectile, jnt):
-	jnt.queue_free()
-	projectile.move_to_lifes()	
+	#get_tree().create_timer(2).connect("timeout", self, "add_lifes", [projectile, j])
 
 	
 func _physics_process(delta):

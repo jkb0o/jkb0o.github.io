@@ -1,27 +1,13 @@
 extends RigidBody2D
 var orbit
 var joint
+export var trail_size = 25
 
 var points = []
 
 func _ready():
 	set_physics_process(false)
-	var trail = preload("res://trail.tscn").instance()
-	connect("tree_exited", trail, "queue_free")
-	game.level.add_child(trail)
-	game.level.move_child(trail, 0)
-
-	while is_inside_tree():
-		yield(time, "idle")
-		trail.global_position = Vector2()
-		points.insert(0, global_position)
-		if points.size() > 25:
-			points.pop_back()
-		var c = Curve2D.new()
-		while trail.get_point_count():
-			trail.remove_point(0)
-		for p in points:
-			trail.add_point(p)
+	game.level.add_trail(self)
 
 			
 			
@@ -36,6 +22,11 @@ func _physics_process(delta):
 		if normal.dot(linear_velocity.normalized()) < 0:
 			normal *= -1
 		applied_force = normal * 450
+		
+		var life_dir = game.level.life_sprite.global_position - global_position
+		var life_dot = life_dir.normalized().dot(linear_velocity.normalized())
+		if life_dot > 0.95:
+			clear_orbit()
 		return
 	var dir = game.level.life_sprite.global_position - global_position
 	if dir.length() < 10:
@@ -45,17 +36,42 @@ func _physics_process(delta):
 	var vel = dir.normalized() * 1000 * (0.5 + 0.5*_acceleration_progress)
 	linear_velocity = linear_velocity.linear_interpolate(vel, _acceleration_progress)
 	_acceleration_progress += delta * 0.1
+	$heart.global_rotation = 0
 	#applied_force = dir.normalized() * 100
+	
+func clear_orbit():
+	orbit = null
+	joint.queue_free()
+	$flash.show()
+	$flash.modulate.a = 0
+	$flash.scale = Vector2()
+	var ft = 0.2
+	tw.ip($flash, "scale", Vector2(), Vector2(1,1), ft, tw.CUBIC, tw.IN)
+	tw.ip($flash, "modulate:a", 0, 1, ft)
+	yield(time.wait(ft), "completed")
+	for n in [$spikes, $spikes_white, $face, $face_white]:
+		n.hide()
+	$heart.show()
+	#tw.ip($flash, "scale", Vector2(), Vector2(1,1), ft, tw.CUBIC, tw.IN)
+	tw.ip($flash, "modulate:a", 1, 0, 0.5)
 	
 func remove():
 	pass
 	
 func set_orbit(o):
 	orbit = o
-	var t = Tween.new()
-	add_child(t)
-	t.start()
-	t.interpolate_property($spikes, "scale", Vector2(1,1), Vector2(0,0), 1, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+	#var t = Tween.new()
+	#add_child(t)
+	#t.start()
+	#t.interpolate_property($spikes, "scale", Vector2(1,1), Vector2(0,0), 1, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
+	tw.ip(self, "trail_size", trail_size, 0, 0.5, tw.SINE, tw.INOUT)
+	for n in [$spikes_white, $face_white]:
+		n.modulate.a = 0
+		n.show()
+		tw.ip(n, "modulate:a", 0, 1, 1)
+	for n in [$spikes, $spikes_white]:
+		tw.ip(n, "scale", Vector2(1,1), Vector2(0.5, 0.5), 0.75, tw.CUBIC, tw.IN)
+	
 	set_physics_process(true)
 	
 func move_to_lifes():
