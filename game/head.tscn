@@ -24,7 +24,7 @@ height = 121.032
 
 [sub_resource type="Animation" id=6]
 resource_name = "appear"
-length = 5.0
+length = 4.2
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
@@ -219,6 +219,18 @@ tracks/15/keys = {
 "update": 0,
 "values": [ Vector2( 0, -200 ), Vector2( 0, -200 ), Vector2( 0, 15 ), Vector2( 0, 0 ) ]
 }
+tracks/16/type = "value"
+tracks/16/path = NodePath("bodybox/body:gravity_scale")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0, 4.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0.0, 1.0 ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "head_bump"
@@ -300,6 +312,7 @@ position = Vector2( 0, -200 )
 [node name="shine_sprt" type="Sprite" parent="mind"]
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 0, -200 )
+scale = Vector2( 1e-05, 1e-05 )
 texture = ExtResource( 7 )
 
 [node name="bodybox" type="Area2D" parent="."]
@@ -348,7 +361,6 @@ anims/appear = SubResource( 6 )
 anims/head_bump = SubResource( 5 )
 
 [node name="button" type="Button" parent="."]
-modulate = Color( 1, 1, 1, 0.75 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -357,7 +369,6 @@ margin_left = -100.0
 margin_top = -40.0
 margin_right = 100.0
 margin_bottom = 40.0
-rect_scale = Vector2( 0.900001, 0.900001 )
 rect_pivot_offset = Vector2( 100, 40 )
 custom_styles/hover = SubResource( 7 )
 custom_styles/pressed = SubResource( 7 )
