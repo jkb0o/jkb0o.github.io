@@ -32,6 +32,7 @@ layer = -1
 [node name="texture" type="TextureRect" parent="bg"]
 margin_right = 1920.0
 margin_bottom = 1080.0
+size_flags_horizontal = 9
 texture = ExtResource( 2 )
 
 [node name="life_sprite" type="Sprite" parent="bg"]
@@ -98,4 +99,4 @@ collision_mask = 524288
 shape = SubResource( 1 )
 
 [node name="budha" parent="." instance=ExtResource( 5 )]
-position = Vector2( 961.841, 368.587 )
+position = Vector2( 960, 690 )

@@ -1,30 +1,257 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://head.gd" type="Script" id=1]
-[ext_resource path="res://circle.gd" type="Script" id=2]
-[ext_resource path="res://orbit.tscn" type="PackedScene" id=3]
-[ext_resource path="res://textures/mind.png" type="Texture" id=4]
-[ext_resource path="res://textures/body.png" type="Texture" id=5]
-[ext_resource path="res://textures/shine.png" type="Texture" id=6]
-[ext_resource path="res://textures/head.png" type="Texture" id=7]
-[ext_resource path="res://textures/face.png" type="Texture" id=8]
+[ext_resource path="res://textures/shine.png" type="Texture" id=2]
+[ext_resource path="res://textures/head.png" type="Texture" id=3]
+[ext_resource path="res://textures/face.png" type="Texture" id=4]
+[ext_resource path="res://circle.gd" type="Script" id=5]
+[ext_resource path="res://orbit.tscn" type="PackedScene" id=6]
+[ext_resource path="res://textures/mind.png" type="Texture" id=7]
+[ext_resource path="res://textures/body.png" type="Texture" id=8]
+[ext_resource path="res://fonts/default.font.tres" type="DynamicFont" id=9]
 
-[sub_resource type="PhysicsMaterial" id=4]
+[sub_resource type="PhysicsMaterial" id=1]
 absorbent = true
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=2]
 radius = 151.595
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=3]
+
+[sub_resource type="CapsuleShape2D" id=4]
 radius = 13.289
 height = 121.032
 
-[sub_resource type="CircleShape2D" id=7]
+[sub_resource type="Animation" id=6]
+resource_name = "appear"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.392157 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("mind/orbit:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.5, 3.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("bodybox/body/body_sprt:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.5, 3.7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("head:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.5, 3.7, 3.9 ),
+"transitions": PoolRealArray( 1, 1.51572, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -200 ), Vector2( 0, -200 ), Vector2( 0, 15 ), Vector2( 0, 0 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("mind/shine_sprt:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 2.1, 2.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("bodybox/body/body_sprt:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 2.5, 3.7, 3.9 ),
+"transitions": PoolRealArray( 1, 1.51572, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 240 ), Vector2( 0, 240 ), Vector2( 0, 15 ), Vector2( 0, 40 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("button/text:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 1.3, 1.6 ),
+"transitions": PoolRealArray( 1, 2, 0.466516 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("shine_sprt:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -200 ) ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 1.7 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "wait_for_play"
+} ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("button:rect_scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 1.7, 1.8, 2.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.9, 0.9 ), Vector2( 3, 3 ) ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("button:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 1.7, 2.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("mind/shine_sprt:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 2.1, 2.2, 2.4 ),
+"transitions": PoolRealArray( 0.287175, 1, 1.51572 ),
+"update": 0,
+"values": [ Vector2( 1e-05, 1e-05 ), Vector2( 1.1, 1.1 ), Vector2( 1, 1 ) ]
+}
+tracks/12/type = "value"
+tracks/12/path = NodePath("head:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/keys = {
+"times": PoolRealArray( 3.6, 3.7, 3.8, 3.9, 4, 4.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 0.9 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.95, 1.05 ), Vector2( 1, 1 ) ]
+}
+tracks/13/type = "value"
+tracks/13/path = NodePath("bodybox/body/body_sprt:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/keys = {
+"times": PoolRealArray( 3.6, 3.7, 3.8, 3.9, 4, 4.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 0.8 ), Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 0.9, 1.1 ), Vector2( 1, 1 ) ]
+}
+tracks/14/type = "value"
+tracks/14/path = NodePath("mind/orbit:position")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/keys = {
+"times": PoolRealArray( 0, 2.5, 3.7, 3.9 ),
+"transitions": PoolRealArray( 1, 1.51572, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -200 ), Vector2( 0, -200 ), Vector2( 0, 15 ), Vector2( 0, 0 ) ]
+}
+tracks/15/type = "value"
+tracks/15/path = NodePath("mind/shine_sprt:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0, 2.5, 3.7, 3.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -200 ), Vector2( 0, -200 ), Vector2( 0, 15 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "head_bump"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("head:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 0.9 ), Vector2( 1, 1 ), Vector2( 0.9, 1.1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 1, 0.894118, 0.894118, 1 )
+corner_radius_top_left = 40
+corner_radius_top_right = 40
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+corner_detail = 16
+
+[sub_resource type="StyleBoxEmpty" id=8]
 
 [node name="budha" type="RigidBody2D"]
+modulate = Color( 1, 1, 1, 0.392157 )
 collision_layer = 512
 collision_mask = 0
-physics_material_override = SubResource( 4 )
+physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 contacts_reported = 10
 contact_monitor = true
@@ -33,56 +260,71 @@ angular_damp = 128.0
 script = ExtResource( 1 )
 force_value = 1200
 
+[node name="shine_sprt" type="Sprite" parent="."]
+position = Vector2( 0, -200 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 2 )
+
+[node name="shape" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 2 )
+
+[node name="head" type="Node2D" parent="."]
+position = Vector2( 0, -200 )
+
+[node name="head_sprt" type="Sprite" parent="head"]
+texture = ExtResource( 3 )
+
+[node name="face_sprt" type="Sprite" parent="head/head_sprt"]
+position = Vector2( 0, 45 )
+z_index = 10
+texture = ExtResource( 4 )
+
 [node name="mind" type="RigidBody2D" parent="."]
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
 linear_damp = 2.0
-script = ExtResource( 2 )
+script = ExtResource( 5 )
 force_value = 1500
 stick = "left"
 
-[node name="orbit" parent="mind" instance=ExtResource( 3 )]
+[node name="shape" type="CollisionShape2D" parent="mind"]
+visible = false
+shape = SubResource( 2 )
+
+[node name="orbit" parent="mind" instance=ExtResource( 6 )]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, -200 )
 
 [node name="shine_sprt" type="Sprite" parent="mind"]
-texture = ExtResource( 4 )
-
-[node name="shape" type="CollisionShape2D" parent="mind"]
-shape = SubResource( 5 )
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, -200 )
+texture = ExtResource( 7 )
 
 [node name="bodybox" type="Area2D" parent="."]
 position = Vector2( 0, 160.313 )
 
+[node name="shape" type="CollisionShape2D" parent="bodybox"]
+visible = false
+shape = SubResource( 3 )
+
 [node name="body" type="RigidBody2D" parent="bodybox"]
 collision_layer = 0
 collision_mask = 0
+gravity_scale = 0.0
 linear_damp = 0.0
 angular_damp = 1.0
 
-[node name="body_sprt" type="Sprite" parent="bodybox/body"]
-position = Vector2( 0, 40 )
-texture = ExtResource( 5 )
-
 [node name="shape" type="CollisionShape2D" parent="bodybox/body"]
+visible = false
 position = Vector2( -0.448364, 75.4187 )
-shape = SubResource( 6 )
+shape = SubResource( 4 )
 
-[node name="shape" type="CollisionShape2D" parent="bodybox"]
-shape = SubResource( 7 )
-
-[node name="shine_sprt" type="Sprite" parent="."]
-texture = ExtResource( 6 )
-
-[node name="head_sprt" type="Sprite" parent="."]
-texture = ExtResource( 7 )
-
-[node name="face_sprt" type="Sprite" parent="head_sprt"]
-position = Vector2( 0, 45 )
-z_index = 10
+[node name="body_sprt" type="Sprite" parent="bodybox/body"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( 0, 240 )
 texture = ExtResource( 8 )
-
-[node name="shape" type="CollisionShape2D" parent="."]
-shape = SubResource( 5 )
 
 [node name="mind_joint" type="DampedSpringJoint2D" parent="."]
 node_a = NodePath("..")
@@ -100,3 +342,35 @@ softness = 16.0
 [node name="Camera2D" type="Camera2D" parent="."]
 smoothing_enabled = true
 smoothing_speed = 20.0
+
+[node name="animator" type="AnimationPlayer" parent="."]
+anims/appear = SubResource( 6 )
+anims/head_bump = SubResource( 5 )
+
+[node name="button" type="Button" parent="."]
+modulate = Color( 1, 1, 1, 0.75 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -40.0
+margin_right = 100.0
+margin_bottom = 40.0
+rect_scale = Vector2( 0.900001, 0.900001 )
+rect_pivot_offset = Vector2( 100, 40 )
+custom_styles/hover = SubResource( 7 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/focus = SubResource( 8 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 7 )
+
+[node name="text" type="Label" parent="button"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 9 )
+custom_colors/font_color = Color( 0.215686, 0.207843, 0.305882, 1 )
+text = "PLAY"
+align = 1
+valign = 1

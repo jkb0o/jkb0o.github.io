@@ -21,6 +21,15 @@ func _ready():
 	#orbit.connect("area_entered", self, "add_to_orbit")
 	connect("body_entered", self, "remove_life")
 	
+func wait_for_play():
+	$animator.playback_speed = 0
+	yield($button, "pressed")
+	$animator.playback_speed = 1
+	
+func wait_for_start():
+	$animator.play("appear")
+	yield($animator, "animation_finished")
+	
 func remove_life(projectile:RigidBody2D):
 	remove_from_orbit(projectile)
 	projectile.remove()
